@@ -1,56 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light">
-<title>Smart Upkeep — SmartKeep V.2</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500&family=Khand:wght@600&display=swap" rel="stylesheet">
-<style>
-  :root { color-scheme: light; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: #FAF3EB; color: #2b2b2b; font-family: 'Hind', sans-serif;
-         display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 24px 16px; }
-  h1 { font-family: 'Khand', sans-serif; font-weight: 600; font-size: clamp(1.8rem, 5vw, 2.8rem); margin: 8px 0 20px; text-align: center; }
-  video { width: 100%; border-radius: 12px; background: #000; display: block; }
-  .v-wide { max-width: 960px; }
-  .v-tall { max-width: 420px; display: none; }
-  @media (max-width: 700px), (orientation: portrait) and (max-width: 900px) {
-    .v-wide { display: none; } .v-tall { display: block; }
-  }
-  .wrap { width: 100%; display: flex; justify-content: center; }
-  .actions { margin: 20px 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center; }
-  a { color: #b5562b; }
-  button { font-family: 'Hind', sans-serif; font-size: 1rem; font-weight: 500; padding: 10px 22px; border: 0;
-           border-radius: 999px; background: #b5562b; color: #fff; cursor: pointer; }
-  #msg { min-height: 1.2em; font-size: .9rem; }
-  footer { margin-top: auto; padding-top: 24px; font-size: .85rem; }
-</style>
-</head>
-<body>
-  <h1>Smart Upkeep — SmartKeep V.2</h1>
-  <div class="wrap">
-    <video class="v-wide" controls playsinline preload="metadata"><source src="SmartKeep_V2.mp4?v=20261013b" type="video/mp4"></video>
-    <video class="v-tall" controls playsinline preload="metadata"><source src="SmartKeep_V2_9x16.mp4?v=20261013b" type="video/mp4"></video>
-  </div>
-  <div class="actions">
-    <a href="SmartKeep_V2.mp4?v=20261013b">Direct link: 16:9 video</a>
-    <a href="SmartKeep_V2_9x16.mp4?v=20261013b">Direct link: 9:16 video</a>
-    <button id="share" type="button">Share</button>
-  </div>
-  <div id="msg"></div>
-  <footer>Built by <a href="https://maxweberman.com">Max Weberman</a></footer>
-<script>
-  document.querySelectorAll('video').forEach(v => v.addEventListener('play', () =>
-    document.querySelectorAll('video').forEach(o => { if (o !== v) o.pause(); })));
-  document.getElementById('share').addEventListener('click', async () => {
-    const url = location.href, msg = document.getElementById('msg');
-    if (navigator.share) { try { await navigator.share({ title: document.title, url }); return; } catch (e) { if (e.name === 'AbortError') return; } }
-    try { await navigator.clipboard.writeText(url); msg.textContent = 'Link copied!'; }
-    catch (e) { window.prompt('Copy this link:', url); }
-  });
-</script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light only"><meta name="theme-color" content="#FAF6EE">
+<title>Smart Upkeep — SmartKeep V.2</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="icon" href="favicon.ico" sizes="any"><link rel="manifest" href="manifest.webmanifest">
+<style>*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#FAF6EE;color:#1a1a1a;font-family:Hind,-apple-system,system-ui,sans-serif}
+body{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}main{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 20px}
+.card{width:100%;max-width:360px;background:#fff;border:1px solid #e6dfd1;padding:28px 22px}h1{font-size:28px;margin:0 0 4px;font-weight:700}p{margin:0 0 20px;color:#5c5c5c;font-size:15px}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}input[type=password]{width:100%;font-size:16px;min-height:48px;padding:10px 12px;border:1px solid #cfc6b4;background:#fffdf8;border-radius:0}
+.rm{display:flex;align-items:center;gap:10px;margin:14px 0 18px;font-size:15px;min-height:44px}.rm input{width:20px;height:20px}
+button{width:100%;min-height:48px;font-size:16px;font-weight:600;background:#1a1a1a;color:#fff;border:0;border-radius:0;cursor:pointer}
+#err{color:#a12a1b;font-size:14px;min-height:20px;margin:10px 0 0}footer{text-align:center;font-size:13px;color:#737373;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}</style></head>
+<body><main><form class="card" id="f" hidden><h1>Smart Upkeep — SmartKeep V.2</h1><p>Enter the password to open.</p>
+<label for="p">Password</label><input id="p" type="password" autocomplete="current-password" required autofocus enterkeyhint="go">
+<label class="rm"><input type="checkbox" id="r" checked> Remember this device</label><button type="submit">Open</button><div id="err" role="alert"></div></form></main>
+<footer>Built by Max Weberman</footer>
+<script>(()=>{const D={"s": "h1YeWA5S7tHNNgfrOtWNBw==", "i": "3aIPgwh5yNth1j36", "c": "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", "n": 600000},K='mwPagesKey',u=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0)),f=document.getElementById('f');
+async function dec(raw){const k=await crypto.subtle.importKey('raw',raw,'AES-GCM',false,['decrypt']);return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:u(D.i)},k,u(D.c)))}
+function show(t){document.open();document.write(t);document.close()}
+addEventListener('DOMContentLoaded',async()=>{const s=localStorage.getItem(K);if(s){try{show(await dec(u(s)));return}catch(e){localStorage.removeItem(K)}}f.hidden=false;document.getElementById('p').focus()});
+f.onsubmit=async e=>{e.preventDefault();const er=document.getElementById('err');er.textContent='';try{const b=await crypto.subtle.importKey('raw',new TextEncoder().encode(document.getElementById('p').value),'PBKDF2',false,['deriveBits']);
+const raw=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',salt:u(D.s),iterations:D.n,hash:'SHA-256'},b,256));const t=await dec(raw);
+if(document.getElementById('r').checked)localStorage.setItem(K,btoa(String.fromCharCode(...raw)));show(t)}catch(x){er.textContent='Wrong password. Try again.'}}})()</script></body></html>
